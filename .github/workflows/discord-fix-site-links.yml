@@ -1,0 +1,30 @@
+name: "Discord: fix site links"
+
+# Manual. Scans channel topics, pins, and recent posts for the old
+# montrez.github.io site link. Run once with fix off to see the report.
+on:
+  workflow_dispatch:
+    inputs:
+      fix:
+        description: "Rewrite links the bots can edit (off = report only)"
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+jobs:
+  links:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Scan Discord for outdated links
+        env:
+          DISCORD_GUIDE_TOKEN: ${{ secrets.DISCORD_GUIDE_TOKEN }}
+          DISCORD_ANNOUNCE_WEBHOOK: ${{ secrets.DISCORD_ANNOUNCE_WEBHOOK }}
+          DISCORD_RELEASE_WEBHOOK: ${{ secrets.DISCORD_RELEASE_WEBHOOK }}
+          FIX: ${{ inputs.fix }}
+        run: python3 scripts/discord_bots/fix_site_links.py ${{ inputs.fix && '--fix' || '' }}
