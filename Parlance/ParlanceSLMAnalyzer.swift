@@ -134,10 +134,7 @@ enum ParlanceSLMError: LocalizedError {
             Or disable dev server mode in the app.
             """
         case .modelMissing:
-            return """
-            Parlance Coach model is not installed in this build. \
-            Re-archive after running: ./training/prepare_ios_coach_model.sh
-            """
+            return "Parlance Coach could not find its language model on this iPhone. Reinstall Parlance to restore it."
         case .unsupportedLanguage:
             return "Parlance Coach does not cover this Write language yet."
         }

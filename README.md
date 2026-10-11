@@ -26,7 +26,7 @@
 - **Grammar Guide**: verb tenses and grammar rules, A1–C2, per practice language.
 - **Regional Guide**: regional vocabulary, pronouns, and dialect traps, with a "your region vs. theirs" picker.
 - **Medical and Legal Guides**: domain interpreting references. On the phones these two require Parlance Plus.
-- **Parlance Coach**: on-device grammar coaching for English, Spanish, and French. Qwen 0.5B runs fully offline (MLX on iPhone, GGUF on Android). Phones are Coach-only. The web app can still use a cloud provider.
+- **Parlance Coach**: on-device grammar coaching for English, Spanish, and French. Runs fully offline (Gemma 4 GEC via MLX on iPhone, Qwen 0.5B GGUF on Android). Phones are Coach-only. The web app can still use a cloud provider.
 - **Parlance Plus**: monthly subscription. On the phones it unlocks the medical and legal guides. Writing and saving journal entries stay free. Coach feedback is what we charge for.
 - Dark mode and interface language (EN/ES/FR) that apply across the journal, guides, and regional content.
 
@@ -123,9 +123,9 @@ Ship both stores from this Mac with `fastlane both` (see [fastlane/README.md](fa
 
 ## Parlance Coach
 
-On-device grammar coaching on **iPhone and Android**. Spanish and French use the fine-tuned Qwen 0.5B weights. English uses the same multilingual 0.5B with English prompts and the English rules pack. See [training/ARCHIVE_SPANISH.md](training/ARCHIVE_SPANISH.md).
+On-device grammar coaching on **iPhone and Android**. iPhone runs fine-tuned Gemma 4 GEC models for Spanish and French (MLX); English uses the Spanish model with English prompts and the English rules pack. Android runs the fine-tuned Qwen 0.5B GGUF exports. See [training/ARCHIVE_SPANISH.md](training/ARCHIVE_SPANISH.md).
 
-1. iOS: `./training/prepare_ios_coach_model.sh`, then archive locally
+1. iOS: `./training/prepare_ios_coach_model.sh` (stages both Gemma models and splits out their shared weights so the app stays under Apple's 4 GB limit), then archive locally
 2. Android: GGUF exports live in the `parlance_models` Play asset pack, not the base module
 3. In the app: set **Write** to English, Spanish, or French and tap **Feedback**
 

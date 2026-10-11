@@ -4,10 +4,10 @@ Fine-tuned Spanish and French models for on-device coaching:
 
 | Language | Bundle folder | Training export |
 |----------|---------------|-----------------|
-| Spanish | `Parlance/Models/parlance-es-mlx/` | `training/models/parlance-es-mlx/` |
-| French | `Parlance/Models/parlance-fr-mlx/` | `training/models/parlance-fr-mlx/` |
+| Spanish | `Parlance/Models/parlance-es-mlx/` | `training/models/parlance-gec-es/` |
+| French | `Parlance/Models/parlance-fr-mlx/` | `training/models/parlance-gec-fr/` |
 
-Run before archiving (exports MLX if missing, smoke tests, rsyncs both):
+Run before archiving (stages both fused Gemma models, then splits out the shared weights):
 
 ```bash
 ./training/prepare_ios_coach_model.sh

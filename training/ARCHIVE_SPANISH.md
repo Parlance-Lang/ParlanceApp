@@ -2,40 +2,44 @@
 
 ## What ships
 
-- **Parlance Coach** in `Parlance/web/journal.js` (Spanish and French journals)
+- **Parlance Coach** in `Parlance/web/journal.js` (Spanish, French, and English journals)
 - On-device inference: `ParlanceSLMEngine.swift` + `ParlanceSLMAnalyzer.swift` (MLX Swift)
-- Weights are **not** in git — copied into the app at build time (~294 MB MLX 4-bit per language)
+- iPhone weights: fused **Gemma 4 GEC** models, 4-bit MLX (`training/models/parlance-gec-es`, `training/models/parlance-gec-fr`)
+- Android weights: Qwen 0.5B GGUF exports in the `parlance_models` Play asset pack (unchanged by this checklist)
+- Weights are **not** in git — copied into the app at build time
 
 ## Before you archive (on your Mac)
 
-1. **Merged models** (~942 MB each)
+1. **Fused Gemma models** (~2.5 GB each)
 
    ```bash
-   ls -lh training/models/parlance-es/model.safetensors
-   ls -lh training/models/parlance-fr/model.safetensors
-   # expect ~942M each, not ~437M
+   ls -lh training/models/parlance-gec-es/model.safetensors
+   ls -lh training/models/parlance-gec-fr/model.safetensors
    ```
 
-2. **Prepare MLX bundles + smoke tests**
+2. **Stage + split for the app**
 
    ```bash
    ./training/prepare_ios_coach_model.sh
    ```
 
-   Exports `parlance-es-mlx` and `parlance-fr-mlx` if needed; runs `smoke_test_slm.py` for both.
+   Stages both models into `Parlance/Models/parlance-<lang>-mlx/`, then runs
+   `split_coach_weights.py --verify`. Two full checkpoints are ~5 GB, over the App Store
+   4 GB thinned-size limit (error 90558), so tensors identical in both languages move to
+   `Parlance/Models/parlance-coach-shared/model-shared.safetensors` (~2 GB) and each language
+   keeps only `model-coach.safetensors` (~0.6 GB).
 
 3. **Xcode**
 
    - If build fails with *missing Metal Toolchain*: `xcodebuild -downloadComponent MetalToolchain`
    - Open `Parlance.xcodeproj`
    - Wait for Swift packages to resolve (`mlx-swift-lm`, `swift-transformers-mlx`)
-   - Select a **physical iPhone** (recommended) or device build destination
-   - Product → **Archive** → Distribute (TestFlight)
+   - Product → **Archive** → Distribute (TestFlight), or `fastlane ios`
+   - Check the `.app` in the archive is under 4 GB (~3.1 GB as of 2.4 build 39)
 
 4. **Test on device**
 
    - Journal language → **Spanish** or **French**
-   - ⚙ AI → **Parlance Coach**
    - Write a sentence → first run loads the model (1–2 min); later runs faster
    - No Mac server required
 
@@ -43,11 +47,15 @@
 
 | Piece | Spanish | French |
 |-------|---------|--------|
-| HF merged (training) | `training/models/parlance-es/` | `training/models/parlance-fr/` |
-| MLX 4-bit (iOS) | `training/models/parlance-es-mlx/` | `training/models/parlance-fr-mlx/` |
-| Copy into `.app` | `parlance-es-mlx/` | `parlance-fr-mlx/` |
+| Fused Gemma (training) | `training/models/parlance-gec-es/` | `training/models/parlance-gec-fr/` |
+| Staged in app | `parlance-es-mlx/` (config, tokenizer, `model-coach.safetensors`) | `parlance-fr-mlx/` (same) |
+| Shared by both | `parlance-coach-shared/model-shared.safetensors` | ← |
 
-App size increase: ~300 MB per language (~600 MB with both).
+At runtime `ParlanceSLMModelLocator` symlinks the language folder and the shared file into
+`Application Support/Parlance/linked/<folder>/`; MLX loads every `*.safetensors` there.
+
+If a retrain changes the embeddings, less is shared and the per-language files grow. Re-check
+the archive size before uploading.
 
 ## Optional: dev Mac server
 
@@ -60,13 +68,14 @@ Enable dev routing in the app (UserDefaults key `parlance_slm_dev_server` = true
 ## Optional: back up weights outside git
 
 ```bash
-zip -r ~/Desktop/parlance-es-mlx.zip training/models/parlance-es-mlx/
-zip -r ~/Desktop/parlance-fr-mlx.zip training/models/parlance-fr-mlx/
+zip -r ~/Desktop/parlance-gec-es.zip training/models/parlance-gec-es/
+zip -r ~/Desktop/parlance-gec-fr.zip training/models/parlance-gec-fr/
 ```
 
-## Export one language only
+## Re-stage after retraining one language
+
+Both languages must be staged together, because the shared file depends on both:
 
 ```bash
-python3 training/export_parlance_mlx.py --lang fr
-rsync -a --delete training/models/parlance-fr-mlx/ Parlance/Models/parlance-fr-mlx/
+./training/prepare_ios_coach_model.sh
 ```

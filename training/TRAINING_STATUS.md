@@ -1,6 +1,10 @@
 # Parlance SLM training
 
-## Spanish — ready for TestFlight (on-device)
+> **iPhone now ships Gemma 4 GEC** (`training/models/parlance-gec-es`, `parlance-gec-fr`), staged and
+> split by `./training/prepare_ios_coach_model.sh`; see **training/ARCHIVE_SPANISH.md**. The Qwen 0.5B
+> tables below describe the Android GGUF models and the earlier iPhone builds.
+
+## Spanish — Qwen 0.5B (Android GGUF; iPhone before 2.4 build 38)
 
 | Item | Status |
 |------|--------|
@@ -10,7 +14,7 @@
 | App provider | **Parlance Coach** in ⚙ AI (Spanish journal) |
 | iOS inference | **MLX Swift** (`mlx-swift-lm`) — bundled at archive |
 
-## French — ready for TestFlight (on-device)
+## French — Qwen 0.5B (Android GGUF; iPhone before 2.4 build 38)
 
 | Item | Status |
 |------|--------|
@@ -40,10 +44,10 @@ After migrate: `data/spanish/assessed_level_es.jsonl` → `prepare_slm_data.py` 
 ls -lh training/models/parlance-es/model.safetensors
 ls -lh training/models/parlance-fr/model.safetensors
 
-# Export MLX + smoke + sync for iOS archive (both languages)
+# Stage both Gemma GEC models + split shared weights for iOS archive
 ./training/prepare_ios_coach_model.sh
 
-# Or one language
+# Legacy Qwen MLX export (one language)
 python3 training/export_parlance_mlx.py --lang fr
 python3 training/smoke_test_slm.py fr
 

@@ -55,7 +55,11 @@ That is sync web, Play, then iOS, from `fastlane/Fastfile`.
   must already be a Play Console user with release access.
 - iOS: local archive and upload. Xcode Cloud cannot see the MLX weights.
   `build/ExportOptions.plist` is `app-store-connect`, destination `upload`,
-  team `9869W49GYJ`.
+  team `9869W49GYJ`. Run `./training/prepare_ios_coach_model.sh` first and
+  confirm the archived `.app` is under 4 GB (`du -sh` on
+  `build/Parlance.xcarchive/Products/Applications/*.app`); App Store
+  Connect rejects larger builds after upload with error 90558. Keep about
+  10 GB of disk free: the export copies the app and writes a 3 GB IPA.
 
 After `npx cap sync`, confirm `android/settings.gradle` still includes
 `:parlance_models`.
