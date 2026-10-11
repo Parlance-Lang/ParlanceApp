@@ -69,7 +69,7 @@ class HeraldCog(commands.Cog):
             return
 
         notes = highlights.strip()
-        beta = "https://montrez.github.io/ParlanceApp/beta.html"
+        beta = "https://parlance-lang.github.io/ParlanceApp/beta.html"
         short_lines = [
             line for line in notes.splitlines()
             if line.strip().startswith(("-", "*"))
@@ -113,7 +113,7 @@ class HeraldCog(commands.Cog):
         text = f"**TestFlight: {build}**\n\n{notes}"
         if link:
             text += f"\n\n{link}"
-        text += "\n\nNew testers sign up here: https://montrez.github.io/ParlanceApp/beta.html"
+        text += "\n\nNew testers sign up here: https://parlance-lang.github.io/ParlanceApp/beta.html"
         text += "\n\nShare feedback in #beta-testers."
         await channel.send(text)
         await interaction.response.send_message("Posted.", ephemeral=True)

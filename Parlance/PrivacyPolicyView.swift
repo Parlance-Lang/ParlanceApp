@@ -54,7 +54,7 @@ struct PrivacyPolicyView: View {
         ),
         (
             "11. Contact",
-            "Questions or deletion requests: email parlance.lang@gmail.com. You can also open an issue at github.com/Montrez/ParlanceApp/issues."
+            "Questions or deletion requests: email parlance.lang@gmail.com. You can also open an issue at github.com/Parlance-Lang/ParlanceApp/issues."
         ),
     ]
 

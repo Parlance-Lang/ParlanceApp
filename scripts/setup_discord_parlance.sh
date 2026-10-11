@@ -66,7 +66,7 @@ CHANNELS=(
   "parlance-coach|Tips for on-device Parlance Coach, cloud AI, journal workflow, and exam prep."
 )
 
-WELCOME_MSG=$'Welcome to **Parlance** — a language writing journal for aspiring interpreters.\n\nPractice Spanish and French with structured AI feedback. Start in **#introductions**, get help in **#support**, and share writing in **#spanish-practice** or **#french-practice**.\n\nApp: https://montrez.github.io/ParlanceApp/'
+WELCOME_MSG=$'Welcome to **Parlance** — a language writing journal for aspiring interpreters.\n\nPractice Spanish and French with structured AI feedback. Start in **#introductions**, get help in **#support**, and share writing in **#spanish-practice** or **#french-practice**.\n\nApp: https://parlance-lang.github.io/ParlanceApp/'
 
 create_channel() {
   local name="$1"

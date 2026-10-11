@@ -1,7 +1,7 @@
 Required App Store Connect fields for Guideline 3.1.2(c):
 
 privacy_url:
-https://montrez.github.io/ParlanceApp/privacy.html
+https://parlance-lang.github.io/ParlanceApp/privacy.html
 
 Append to description:
 Terms of Use: https://www.apple.com/legal/internet-services/itunes/dev/stdeula/

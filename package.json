@@ -2,7 +2,7 @@
   "name": "parlanceapp",
   "version": "1.0.0",
   "description": "Language writing journal for aspiring interpreters — AI grammar feedback, register analysis, CEFR A1-C2",
-  "author": "Montrez Cox",
+  "author": "Parlance",
   "license": "ISC",
   "scripts": {
     "sync": "cap sync android",
@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Montrez/ParlanceApp.git"
+    "url": "git+https://github.com/Parlance-Lang/ParlanceApp.git"
   },
   "dependencies": {
     "@capacitor/android": "^8.3.1",

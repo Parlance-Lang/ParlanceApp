@@ -2815,7 +2815,7 @@ function updateOnlineStatus(online) {
 // Canonical English source: privacy.html (mirrored to docs/ + PrivacyPolicyView).
 // On iOS, WKWebView fetch('privacy.html') from a file:// bundle often fails —
 // prefer the native PrivacyPolicyView. Elsewhere open the GitHub Pages copy.
-const PRIVACY_POLICY_URL = 'https://montrez.github.io/ParlanceApp/privacy.html';
+const PRIVACY_POLICY_URL = 'https://parlance-lang.github.io/ParlanceApp/privacy.html';
 let _privacyBodyPromise = null;
 
 function loadPrivacyBody() {

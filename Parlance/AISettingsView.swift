@@ -132,7 +132,7 @@ struct AISettingsView: View {
     }
 
     private var privacyPolicyURL: URL {
-        URL(string: "https://montrez.github.io/ParlanceApp/privacy.html")!
+        URL(string: "https://parlance-lang.github.io/ParlanceApp/privacy.html")!
     }
 
     private var appleStandardEULA: URL {

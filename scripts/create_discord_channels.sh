@@ -72,7 +72,7 @@ ch = [c for c in data if isinstance(c, dict) and c.get('name') == 'general']
 print(ch[0]['id'] if ch else '')
 ")"
 if [[ -n "$GENERAL_ID" ]]; then
-  WELCOME='Welcome to **Parlance** — a language writing journal for aspiring interpreters.\n\nPractice Spanish and French with structured AI feedback. Introduce yourself in **#introductions**, get help in **#support**, and share writing in **#spanish-practice** or **#french-practice**.\n\nApp: https://montrez.github.io/ParlanceApp/'
+  WELCOME='Welcome to **Parlance** — a language writing journal for aspiring interpreters.\n\nPractice Spanish and French with structured AI feedback. Introduce yourself in **#introductions**, get help in **#support**, and share writing in **#spanish-practice** or **#french-practice**.\n\nApp: https://parlance-lang.github.io/ParlanceApp/'
   msg=$(python3 -c "import json; print(json.dumps({'content': '''$WELCOME'''}))")
   api POST "/channels/$GENERAL_ID/messages" "$msg" >/dev/null
   echo "Posted welcome message in #general"

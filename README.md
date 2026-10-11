@@ -10,10 +10,10 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/Montrez/ParlanceApp/releases/latest">
-    <img src="https://img.shields.io/github/v/release/Montrez/ParlanceApp?label=release" alt="Latest release" />
+  <a href="https://github.com/Parlance-Lang/ParlanceApp/releases/latest">
+    <img src="https://img.shields.io/github/v/release/Parlance-Lang/ParlanceApp?label=release" alt="Latest release" />
   </a>
-  <a href="https://montrez.github.io/ParlanceApp/">
+  <a href="https://parlance-lang.github.io/ParlanceApp/">
     <img src="https://img.shields.io/badge/web%20app-live-0b9cd0" alt="Web app live" />
   </a>
 </p>
@@ -39,7 +39,7 @@ No account is required on the phones. Purchases go through the App Store or Goog
 ### iOS
 
 ```bash
-git clone https://github.com/Montrez/ParlanceApp.git
+git clone https://github.com/Parlance-Lang/ParlanceApp.git
 cd ParlanceApp
 open Parlance.xcodeproj
 ```
@@ -50,7 +50,7 @@ open Parlance.xcodeproj
 
 ### Web
 
-Visit the [GitHub Pages site](https://montrez.github.io/ParlanceApp/) — no install needed. The web app can run AI in-browser with WebLLM or connect a cloud provider. The iPhone and Android apps use Parlance Coach on the device.
+Visit the [GitHub Pages site](https://parlance-lang.github.io/ParlanceApp/) — no install needed. The web app can run AI in-browser with WebLLM or connect a cloud provider. The iPhone and Android apps use Parlance Coach on the device.
 
 ### Android
 
@@ -153,13 +153,13 @@ Feedback infers the sentence’s CEFR level (A1–C2) when the model is confiden
 
 Active work is tracked as GitHub issues, grouped into epics:
 
-- [English learning path](https://github.com/Montrez/ParlanceApp/issues/9) — journal and Coach already cover English; dedicated English weights are still open
-- [Language architecture](https://github.com/Montrez/ParlanceApp/issues/12) — making it easier to add new languages and sections
-- [Central design system](https://github.com/Montrez/ParlanceApp/issues/16) — one source of truth for colors across web, native, and the app icon
-- [App layout & UX polish](https://github.com/Montrez/ParlanceApp/issues/20)
-- [Coach model quality](https://github.com/Montrez/ParlanceApp/issues/26)
+- [English learning path](https://github.com/Parlance-Lang/ParlanceApp/issues/9) — journal and Coach already cover English; dedicated English weights are still open
+- [Language architecture](https://github.com/Parlance-Lang/ParlanceApp/issues/12) — making it easier to add new languages and sections
+- [Central design system](https://github.com/Parlance-Lang/ParlanceApp/issues/16) — one source of truth for colors across web, native, and the app icon
+- [App layout & UX polish](https://github.com/Parlance-Lang/ParlanceApp/issues/20)
+- [Coach model quality](https://github.com/Parlance-Lang/ParlanceApp/issues/26)
 
-See the [full issue list](https://github.com/Montrez/ParlanceApp/issues) for everything currently open.
+See the [full issue list](https://github.com/Parlance-Lang/ParlanceApp/issues) for everything currently open.
 
 ---
 

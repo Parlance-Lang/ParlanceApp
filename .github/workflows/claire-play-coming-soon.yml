@@ -31,7 +31,7 @@ jobs:
           fi
 
           CLAIRE_TEXT=$(jq -rn '
-            "**Google Play is next**\n\nParlance is coming to the Google Play Store soon.\n\nWe are starting Android device testing so we can submit a real Play build. Once that checks out, it goes to Google Play.\n\niOS is going back into App Store review with the latest fixes. Web is live anytime at https://montrez.github.io/ParlanceApp/\n\nIf you want to help try Android early, jump into #beta-testers."
+            "**Google Play is next**\n\nParlance is coming to the Google Play Store soon.\n\nWe are starting Android device testing so we can submit a real Play build. Once that checks out, it goes to Google Play.\n\niOS is going back into App Store review with the latest fixes. Web is live anytime at https://parlance-lang.github.io/ParlanceApp/\n\nIf you want to help try Android early, jump into #beta-testers."
           ')
 
           curl -fsSL -X POST "$WEBHOOK_CLAIRE" \

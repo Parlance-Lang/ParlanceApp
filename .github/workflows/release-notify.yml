@@ -23,7 +23,7 @@ jobs:
           set -euo pipefail
 
           PLAY_LINK="https://play.google.com/apps/internaltest/4701648803954304490"
-          BETA_LINK="https://montrez.github.io/ParlanceApp/beta.html"
+          BETA_LINK="https://parlance-lang.github.io/ParlanceApp/beta.html"
           if [ "$PRERELEASE" = "true" ]; then
             LABEL="TestFlight and Play beta"
             COLOR=16753920
@@ -35,7 +35,7 @@ jobs:
           else
             LABEL="Product update"
             COLOR=5763719
-            PLATFORM_NOTE="Join the beta on iPhone or Android: ${BETA_LINK}. Web: https://montrez.github.io/ParlanceApp/"
+            PLATFORM_NOTE="Join the beta on iPhone or Android: ${BETA_LINK}. Web: https://parlance-lang.github.io/ParlanceApp/"
           fi
 
           # Community-facing notes only: drop GitHub/dev sections (Archive, Still open, etc.)
