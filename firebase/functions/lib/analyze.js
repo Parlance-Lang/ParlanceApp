@@ -155,4 +155,5 @@ async function analyzeWithProvider(params, secrets) {
 module.exports = {
   analyzeWithProvider,
   apiKeyForProvider,
+  ENDPOINTS,
 };

@@ -1,0 +1,33 @@
+{"id": "es-01", "language": "es", "text": "Espero que todo es tranquilo, porque necesito para mi vida a ser más calma.", "corrected": "Espero que todo esté tranquilo, porque necesito que mi vida sea más calmada.", "errors": ["es", "para mi vida a ser más calma"]}
+{"id": "es-02", "language": "es", "text": "Ayer fui al mercado con mi hermana y compramos fruta fresca.", "corrected": "Ayer fui al mercado con mi hermana y compramos fruta fresca.", "errors": []}
+{"id": "es-03", "language": "es", "text": "La problema es que no tengo tiempo.", "corrected": "El problema es que no tengo tiempo.", "errors": ["La"]}
+{"id": "es-04", "language": "es", "text": "Si yo tendría más dinero, viajaría por todo el mundo.", "corrected": "Si yo tuviera más dinero, viajaría por todo el mundo.", "errors": ["tendría"]}
+{"id": "es-05", "language": "es", "text": "Me alegra que hayas venido a la reunión.", "corrected": "Me alegra que hayas venido a la reunión.", "errors": []}
+{"id": "es-06", "language": "es", "text": "Las casas son muy bonito.", "corrected": "Las casas son muy bonitas.", "errors": ["bonito"]}
+{"id": "es-07", "language": "es", "text": "Yo soy cansado después del trabajo.", "corrected": "Yo estoy cansado después del trabajo.", "errors": ["soy"]}
+{"id": "es-08", "language": "es", "text": "Cuando llegues a casa, llámame, por favor.", "corrected": "Cuando llegues a casa, llámame, por favor.", "errors": []}
+{"id": "es-09", "language": "es", "text": "Ellos va a la playa cada verano.", "corrected": "Ellos van a la playa cada verano.", "errors": ["va"]}
+{"id": "es-10", "language": "es", "text": "Pienso de ti todos los días.", "corrected": "Pienso en ti todos los días.", "errors": ["de"]}
+{"id": "es-11", "language": "es", "text": "No creo que sea una buena idea.", "corrected": "No creo que sea una buena idea.", "errors": []}
+{"id": "es-12", "language": "es", "text": "El año pasado viví en Madrid. Fue una experiencia increíble porque conocí a mucha gente y aprendí mucho sobre la cultura. Sin embargo, a veces me sentía sola porque mi familia estaban lejos.", "corrected": "El año pasado viví en Madrid. Fue una experiencia increíble porque conocí a mucha gente y aprendí mucho sobre la cultura. Sin embargo, a veces me sentía sola porque mi familia estaba lejos.", "errors": ["estaban"]}
+{"id": "es-13", "language": "es", "text": "Mañana voy a estudiar para el examen de historia, pero hoy necesito descansar porque estoy muy cansada.", "corrected": "Mañana voy a estudiar para el examen de historia, pero hoy necesito descansar porque estoy muy cansada.", "errors": []}
+{"id": "fr-01", "language": "fr", "text": "Je suis allé au magasin hier et j'ai acheté des pommes rouge.", "corrected": "Je suis allé au magasin hier et j'ai acheté des pommes rouges.", "errors": ["rouge"]}
+{"id": "fr-02", "language": "fr", "text": "Il faut que tu fasses tes devoirs avant le dîner.", "corrected": "Il faut que tu fasses tes devoirs avant le dîner.", "errors": []}
+{"id": "fr-03", "language": "fr", "text": "Il faut que tu fais tes devoirs.", "corrected": "Il faut que tu fasses tes devoirs.", "errors": ["fais"]}
+{"id": "fr-04", "language": "fr", "text": "Si j'aurais su, je serais venu.", "corrected": "Si j'avais su, je serais venu.", "errors": ["aurais"]}
+{"id": "fr-05", "language": "fr", "text": "La problème est difficile.", "corrected": "Le problème est difficile.", "errors": ["La"]}
+{"id": "fr-06", "language": "fr", "text": "Nous sommes partis tôt pour éviter les embouteillages.", "corrected": "Nous sommes partis tôt pour éviter les embouteillages.", "errors": []}
+{"id": "fr-07", "language": "fr", "text": "Elle a allé à la plage.", "corrected": "Elle est allée à la plage.", "errors": ["a allé"]}
+{"id": "fr-08", "language": "fr", "text": "Je me souviens de les vacances.", "corrected": "Je me souviens des vacances.", "errors": ["de les"]}
+{"id": "fr-09", "language": "fr", "text": "Je pense que c'est une bonne idée, mais il faut en parler avec l'équipe.", "corrected": "Je pense que c'est une bonne idée, mais il faut en parler avec l'équipe.", "errors": []}
+{"id": "fr-10", "language": "fr", "text": "Ils mange au restaurant ce soir.", "corrected": "Ils mangent au restaurant ce soir.", "errors": ["mange"]}
+{"id": "fr-11", "language": "fr", "text": "Bien qu'il pleuve, nous irons au parc.", "corrected": "Bien qu'il pleuve, nous irons au parc.", "errors": []}
+{"id": "fr-12", "language": "fr", "text": "L'été dernier, j'ai visité Paris avec mes amis. Nous avons vu la tour Eiffel et nous avons mangé des croissants délicieux. C'était un voyage que je n'oublierai jamais, même si il a fait très chaud.", "corrected": "L'été dernier, j'ai visité Paris avec mes amis. Nous avons vu la tour Eiffel et nous avons mangé des croissants délicieux. C'était un voyage que je n'oublierai jamais, même s'il a fait très chaud.", "errors": ["si il"]}
+{"id": "en-01", "language": "en", "text": "She don't like coffee.", "corrected": "She doesn't like coffee.", "errors": ["don't"]}
+{"id": "en-02", "language": "en", "text": "I have lived here since 2019.", "corrected": "I have lived here since 2019.", "errors": []}
+{"id": "en-03", "language": "en", "text": "I have lived here since five years.", "corrected": "I have lived here for five years.", "errors": ["since"]}
+{"id": "en-04", "language": "en", "text": "If I would have known, I would have come.", "corrected": "If I had known, I would have come.", "errors": ["would have known"]}
+{"id": "en-05", "language": "en", "text": "Neither of the options seems right to me.", "corrected": "Neither of the options seems right to me.", "errors": []}
+{"id": "en-06", "language": "en", "text": "He go to school every day.", "corrected": "He goes to school every day.", "errors": ["go"]}
+{"id": "en-07", "language": "en", "text": "Their going to the park later.", "corrected": "They're going to the park later.", "errors": ["Their"]}
+{"id": "en-08", "language": "en", "text": "We finished the project a week early, so the client was happy.", "corrected": "We finished the project a week early, so the client was happy.", "errors": []}

@@ -87,3 +87,6 @@ android/.idea/
 !.cursor/skills/**
 !.cursor/rules/
 !.cursor/rules/**
+
+services/coach-signals/.venv/
+__pycache__/

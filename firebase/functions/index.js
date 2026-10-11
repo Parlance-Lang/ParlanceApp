@@ -1,15 +1,14 @@
 /**
- * Website-only Cloud Functions. Phones run Coach on the device and do not
- * call these. Signed-in GitHub Pages users get analyzeText so API keys stay
- * in Secret Manager.
+ * Cloud Functions. API keys stay in Secret Manager.
  *
- * analyzeText       — grammar analysis, rate-limited
+ * coachPanel        — zero-cost Coach (free-tier pool + signal server), phones and web
+ * analyzeText       — website grammar analysis with a chosen provider, rate-limited
  * getUsage          — signed-in user's monthly usage summary
  * deleteAccountData — wipe Firestore records for a signed-in web account
  */
 
 const { onCall, HttpsError } = require("firebase-functions/v2/https");
-const { defineSecret } = require("firebase-functions/params");
+const { defineSecret, defineString } = require("firebase-functions/params");
 const { initializeApp } = require("firebase-admin/app");
 const { getFirestore } = require("firebase-admin/firestore");
 const { analyzeWithProvider } = require("./lib/analyze");
@@ -17,6 +16,8 @@ const {
   checkAndIncrementUsage,
   getUsageSummary,
 } = require("./lib/usage");
+const { runPanel } = require("./lib/panel");
+const { takeDailySlot, readCache, writeCache, DAILY_CAP } = require("./lib/panel-store");
 
 initializeApp();
 
@@ -27,6 +28,8 @@ const openrouterKey  = defineSecret("OPENROUTER_API_KEY");
 const openaiKey      = defineSecret("OPENAI_API_KEY");
 const anthropicKey   = defineSecret("ANTHROPIC_API_KEY");
 const kimiKey        = defineSecret("KIMI_API_KEY");
+const signalsToken   = defineSecret("COACH_SIGNALS_TOKEN");
+const signalsUrl     = defineString("COACH_SIGNALS_URL", { default: "" });
 
 const CLOUD_PROVIDERS = new Set([
   "groq", "deepSeek", "deepseek",
@@ -139,6 +142,62 @@ exports.analyzeText = onCall(
   }
 );
 
+// ── coachPanel ───────────────────────────────────────────────────────────────
+// Zero-cost Coach for phones and web: free-tier LLM pool + verification +
+// signal server vote. Anonymous auth is enough; the daily cap protects the
+// free tiers. See services/coach-signals and issue #40.
+
+exports.coachPanel = onCall(
+  {
+    secrets: [groqKey, geminiKey, openrouterKey, signalsToken],
+    timeoutSeconds: 90,
+    memory: "256MiB",
+  },
+  async (request) => {
+    if (!request.auth) {
+      throw new HttpsError("unauthenticated", "Sign in (anonymous is fine) to use Coach.");
+    }
+    const data = request.data || {};
+    const text = typeof data.text === "string" ? data.text.trim() : "";
+    const language = data.language;
+    if (!text) throw new HttpsError("invalid-argument", "text is required");
+    if (text.length > 4000) throw new HttpsError("invalid-argument", "text is too long (4000 characters max)");
+    if (!["es", "fr", "en"].includes(language)) {
+      throw new HttpsError("invalid-argument", "language must be es, fr, or en");
+    }
+
+    const cached = await readCache(text, language).catch(() => null);
+    if (cached) return { ...cached, cached: true };
+
+    const slot = await takeDailySlot(request.auth.uid);
+    if (!slot.allowed) {
+      throw new HttpsError(
+        "resource-exhausted",
+        `Daily cloud check limit reached (${DAILY_CAP}). Offline Coach still works.`
+      );
+    }
+
+    try {
+      const result = await runPanel({
+        text,
+        language,
+        secrets: {
+          groq: groqKey.value(),
+          gemini: geminiKey.value(),
+          openrouter: openrouterKey.value(),
+        },
+        signalsUrl: signalsUrl.value(),
+        signalsToken: signalsToken.value(),
+      });
+      if (!result.llm_error) await writeCache(text, language, result).catch(() => {});
+      return { ...result, cached: false, remaining: slot.remaining };
+    } catch (err) {
+      console.error("coachPanel error:", err.message);
+      throw new HttpsError("unavailable", "Cloud Coach is busy right now. Offline Coach still works.");
+    }
+  }
+);
+
 // ── getUsage ─────────────────────────────────────────────────────────────────
 
 exports.getUsage = onCall(
@@ -179,6 +238,8 @@ exports.deleteAccountData = onCall(
 
     try {
       await db.recursiveDelete(db.doc(`users/${uid}`));
+      const panelUsage = await db.collection("coachPanelUsage").where("uid", "==", uid).get();
+      await Promise.all(panelUsage.docs.map((d) => d.ref.delete()));
       console.log(`Deleted all Firestore data for uid=${uid}`);
       return { deleted: true };
     } catch (err) {
