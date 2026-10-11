@@ -51,6 +51,7 @@
 		E7SLM0013 /* ParlanceSLMFeedbackValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7SLM0023 /* ParlanceSLMFeedbackValidator.swift */; };
 		E7SLM0030 /* parlance-es-mlx in Resources */ = {isa = PBXBuildFile; fileRef = E7SLM0031 /* parlance-es-mlx */; };
 		E7SLM0032 /* parlance-fr-mlx in Resources */ = {isa = PBXBuildFile; fileRef = E7SLM0033 /* parlance-fr-mlx */; };
+		E7SLM0034 /* parlance-coach-shared in Resources */ = {isa = PBXBuildFile; fileRef = E7SLM0035 /* parlance-coach-shared */; };
 		E7WEB0011 /* feedback-sanitize.js in Resources */ = {isa = PBXBuildFile; fileRef = E7WEB0010 /* feedback-sanitize.js */; };
 		E7WEB0013 /* coach-rules-es.js in Resources */ = {isa = PBXBuildFile; fileRef = E7WEB0012 /* coach-rules-es.js */; };
 		E7WEB0015 /* coach-rules-engine.js in Resources */ = {isa = PBXBuildFile; fileRef = E7WEB0014 /* coach-rules-engine.js */; };
@@ -115,6 +116,7 @@
 		E7SLM0023 /* ParlanceSLMFeedbackValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParlanceSLMFeedbackValidator.swift; sourceTree = "<group>"; };
 		E7SLM0031 /* parlance-es-mlx */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "parlance-es-mlx"; sourceTree = "<group>"; };
 		E7SLM0033 /* parlance-fr-mlx */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "parlance-fr-mlx"; sourceTree = "<group>"; };
+		E7SLM0035 /* parlance-coach-shared */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "parlance-coach-shared"; sourceTree = "<group>"; };
 		E7WEB0010 /* feedback-sanitize.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "feedback-sanitize.js"; sourceTree = "<group>"; };
 		E7WEB0012 /* coach-rules-es.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "coach-rules-es.js"; sourceTree = "<group>"; };
 		E7WEB0014 /* coach-rules-engine.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "coach-rules-engine.js"; sourceTree = "<group>"; };
@@ -257,6 +259,7 @@
 			children = (
 				E7SLM0031 /* parlance-es-mlx */,
 				E7SLM0033 /* parlance-fr-mlx */,
+				E7SLM0035 /* parlance-coach-shared */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -356,6 +359,7 @@
 				E7WEB0021 /* coach-standard-fr.js in Resources */,
 				E7SLM0030 /* parlance-es-mlx in Resources */,
 				E7SLM0032 /* parlance-fr-mlx in Resources */,
+				E7SLM0034 /* parlance-coach-shared in Resources */,
 				B8A093FDD2B64109BFAB7970 /* content-theme.css in Resources */,
 				66E9F4100EEA4FABA027BAC8 /* content-guide.css in Resources */,
 				00366AAF97E741748FB640B1 /* guide-ui.js in Resources */,
@@ -529,7 +533,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = Parlance/Parlance.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 38;
+				CURRENT_PROJECT_VERSION = 39;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = 9869W49GYJ;
 				ENABLE_PREVIEWS = YES;
@@ -555,7 +559,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = Parlance/Parlance.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 38;
+				CURRENT_PROJECT_VERSION = 39;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = 9869W49GYJ;
 				ENABLE_PREVIEWS = YES;

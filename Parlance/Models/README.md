@@ -13,6 +13,13 @@ Run before archiving (exports MLX if missing, smoke tests, rsyncs both):
 ./training/prepare_ios_coach_model.sh
 ```
 
-Spanish is Qwen 0.5B (~294 MB). French is the fused Gemma 4 GEC model (~2.5 GB) staged from `training/models/parlance-gec-fr` into the same `parlance-fr-mlx` folder name Xcode already copies.
+Spanish and French are fused Gemma 4 GEC models (~2.5 GB each) staged from `training/models/parlance-gec-<lang>`. Two full checkpoints exceed the App Store 4 GB thinned-size limit, so the script then runs `training/split_coach_weights.py`:
 
-Xcode **Copy Bundle Resources** includes blue folder references `parlance-es-mlx` and `parlance-fr-mlx` so weights appear at the app bundle root.
+| Folder | Contents | Size |
+|--------|----------|------|
+| `parlance-coach-shared/model-shared.safetensors` | Tensors identical in both languages (embeddings, most layers) | ~2.0 GB |
+| `parlance-<lang>-mlx/model-coach.safetensors` | Tensors unique to that language, plus config and tokenizer | ~0.6 GB |
+
+`ParlanceSLMModelLocator` symlinks the shared file next to each language's files under Application Support at runtime, and MLX merges every `*.safetensors` in the directory. If a future retrain touches the embeddings, the shared file shrinks and the per-language files grow; check the total stays under 4 GB.
+
+Xcode **Copy Bundle Resources** includes blue folder references `parlance-coach-shared`, `parlance-es-mlx`, and `parlance-fr-mlx` so weights appear at the app bundle root.

@@ -23,7 +23,13 @@ prepare_gec es
 prepare_gec fr
 
 echo ""
+echo "==> Split shared tensors out (two full checkpoints exceed the App Store 4 GB limit)"
+python3 training/split_coach_weights.py --verify
+du -sh Parlance/Models/parlance-coach-shared Parlance/Models/parlance-es-mlx Parlance/Models/parlance-fr-mlx
+
+echo ""
 echo "OK. Xcode Copy Bundle Resources bundles:"
+echo "  Parlance/Models/parlance-coach-shared/"
 echo "  Parlance/Models/parlance-es-mlx/"
 echo "  Parlance/Models/parlance-fr-mlx/"
 echo "Archive: open Parlance.xcodeproj → Product → Archive (device build)."

@@ -30,6 +30,7 @@ training/adapters/
 training/models/
 Parlance/Models/parlance-es-mlx/
 Parlance/Models/parlance-fr-mlx/
+Parlance/Models/parlance-coach-shared/
 training/models/parlance-fr-mlx/
 training/checkpoints/
 training/*.log
