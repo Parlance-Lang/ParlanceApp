@@ -69,7 +69,7 @@ class HeraldCog(commands.Cog):
             return
 
         notes = highlights.strip()
-        play = "https://play.google.com/apps/internaltest/4701648803954304490"
+        beta = "https://montrez.github.io/ParlanceApp/beta.html"
         short_lines = [
             line for line in notes.splitlines()
             if line.strip().startswith(("-", "*"))
@@ -78,14 +78,13 @@ class HeraldCog(commands.Cog):
         whats_text = (
             f"**Parlance {version}**\n\n"
             f"{notes}\n\n"
-            "iPhone: TestFlight\n"
-            f"Android: {play}"
+            f"Join the beta on iPhone or Android: {beta}"
         )
         claire_text = (
             f"**Parlance {version}** is out.\n\n"
             f"{short}\n\n"
-            "iPhone: update in TestFlight.\n"
-            f"Android: {play}\n\n"
+            "Testers: update in TestFlight or Google Play.\n"
+            f"New testers: {beta}\n\n"
             "Full notes in #whats-new."
         )
         await whats_new.send(whats_text)
@@ -111,9 +110,10 @@ class HeraldCog(commands.Cog):
         if not channel:
             await interaction.response.send_message("#announcements not found.", ephemeral=True)
             return
-        text = f"**TestFlight — {build}**\n\n{notes}"
+        text = f"**TestFlight: {build}**\n\n{notes}"
         if link:
             text += f"\n\n{link}"
+        text += "\n\nNew testers sign up here: https://montrez.github.io/ParlanceApp/beta.html"
         text += "\n\nShare feedback in #beta-testers."
         await channel.send(text)
         await interaction.response.send_message("Posted.", ephemeral=True)

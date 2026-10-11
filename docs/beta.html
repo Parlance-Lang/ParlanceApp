@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Join the Parlance Beta</title>
+  <meta name="description" content="Test Parlance: Interpreter Journal early on iPhone (TestFlight) or Android (Google Play testing)." />
+  <meta property="og:title" content="Join the Parlance Beta" />
+  <meta property="og:description" content="Try new Parlance builds early on iPhone or Android." />
+  <meta property="og:image" content="https://montrez.github.io/ParlanceApp/logo.png" />
+  <link rel="icon" href="favicon.png" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+  <!--
+    Public beta signup page (docs-only, not bundled in the app).
+    Linked from Discord release posts (.github/workflows/release-notify.yml,
+    scripts/discord_bots/herald.py). Update the three links below; everything
+    else adapts. Empty TESTFLIGHT_URL shows "opening soon" instead of a dead button.
+  -->
+  <script>
+    const LINKS = {
+      TESTFLIGHT_URL: '',
+      PLAY_URL: 'https://play.google.com/apps/internaltest/4701648803954304490',
+      DISCORD_URL: 'https://discord.gg/rJhuy9Nf6',
+      EMAIL: 'parlance.lang@gmail.com',
+    };
+  </script>
+  <style>
+    :root { --ink: #1a1a1a; --muted: #555; --line: #e5e5e5; --accent: #2563eb; --paper: #fafaf8; }
+    * { box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      margin: 0; background: var(--paper); color: var(--ink); line-height: 1.6;
+    }
+    main { max-width: 720px; margin: 0 auto; padding: 40px 20px 80px; }
+    header { display: flex; align-items: center; gap: 14px; margin-bottom: 8px; }
+    header img { width: 56px; height: 56px; border-radius: 13px; }
+    h1 { font-size: 1.9rem; margin: 0; line-height: 1.2; }
+    .lede { color: var(--muted); font-size: 1.05rem; margin: 10px 0 28px; }
+    .lang { text-align: right; margin-bottom: 12px; }
+    .lang select { font: inherit; padding: 4px 8px; border-radius: 8px; border: 1px solid var(--line); background: #fff; }
+    .cards { display: grid; gap: 16px; grid-template-columns: 1fr 1fr; }
+    @media (max-width: 640px) { .cards { grid-template-columns: 1fr; } }
+    .card { background: #fff; border: 1px solid var(--line); border-radius: 16px; padding: 22px; display: flex; flex-direction: column; }
+    .card.primary { border: 2px solid var(--accent); }
+    .card h2 { margin: 0 0 4px; font-size: 1.25rem; }
+    .card .sub { color: var(--muted); font-size: 0.9rem; margin: 0 0 14px; }
+    .card ol { padding-left: 20px; margin: 0 0 18px; font-size: 0.95rem; }
+    .card ol li { margin-bottom: 6px; }
+    .btn { display: block; text-align: center; text-decoration: none; font-weight: 600; padding: 13px 16px; border-radius: 12px; margin-top: auto; }
+    .btn.main { background: var(--accent); color: #fff; }
+    .btn.alt { background: #fff; color: var(--accent); border: 1px solid var(--accent); margin-top: 10px; }
+    .btn.off { background: #eee; color: #888; pointer-events: none; }
+    section.more { margin-top: 36px; }
+    section.more h3 { font-size: 1.05rem; margin: 22px 0 4px; }
+    section.more p { margin: 0; color: #333; font-size: 0.97rem; }
+    a { color: var(--accent); }
+    footer { margin-top: 40px; color: var(--muted); font-size: 0.88rem; }
+  </style>
+</head>
+<body>
+<main>
+<div class="lang">
+  <select id="langSelect" aria-label="Language">
+    <option value="en">English</option>
+    <option value="es">Español</option>
+    <option value="fr">Français</option>
+  </select>
+</div>
+  <header>
+    <img src="logo.png" alt="" />
+    <h1 data-k="title">Join the Parlance beta</h1>
+  </header>
+  <p class="lede" data-k="lede">Try new versions of Parlance before they reach the store, and tell us what to fix. It's free, and you can leave anytime.</p>
+
+  <div class="cards">
+    <div class="card" id="iosCard">
+      <h2>iPhone</h2>
+      <p class="sub" data-k="iosSub">Through Apple's TestFlight app</p>
+      <ol>
+        <li data-k="ios1">Tap the button below on your iPhone.</li>
+        <li data-k="ios2">Install TestFlight from the App Store if it asks.</li>
+        <li data-k="ios3">Tap Accept, then Install. Parlance appears on your home screen.</li>
+      </ol>
+      <a class="btn main" id="iosBtn" href="#" data-k="iosBtn">Join on iPhone</a>
+    </div>
+
+    <div class="card" id="androidCard">
+      <h2>Android</h2>
+      <p class="sub" data-k="andSub">Through Google Play testing</p>
+      <ol>
+        <li data-k="and1">Send us the Gmail address you use on Google Play.</li>
+        <li data-k="and2">We add you to the tester list, usually within a day.</li>
+        <li data-k="and3">Open the testing link, tap Accept invite, then install from Google Play.</li>
+      </ol>
+      <a class="btn main" id="andRequest" href="#" data-k="andBtn">Request Android access</a>
+      <a class="btn alt" id="andOpen" href="#" data-k="andOpen">I'm already added: open Google Play</a>
+    </div>
+  </div>
+
+  <section class="more">
+    <h3 data-k="q1">What do testers do?</h3>
+    <p data-k="a1">Use Parlance like you normally would. When something looks wrong, tell us. On iPhone you can take a screenshot inside TestFlight to send feedback straight to us.</p>
+    <h3 data-k="q2">Will my journal be safe?</h3>
+    <p data-k="a2">Yes. Your entries stay on your phone, and beta updates install over the top without erasing them.</p>
+    <h3 data-k="q3">Does it cost anything?</h3>
+    <p data-k="a3">No. Beta builds are free. Purchases inside TestFlight are test purchases and you are never charged.</p>
+    <h3 data-k="q4">Where do I send feedback?</h3>
+    <p id="feedbackLine"></p>
+  </section>
+
+  <footer>
+    <a href="./" data-k="web">Use Parlance on the web</a> · <a href="privacy.html" data-k="privacy">Privacy Policy</a>
+  </footer>
+</main>
+
+<script>
+const T = {
+  en: {
+    title: 'Join the Parlance beta',
+    lede: "Try new versions of Parlance before they reach the store, and tell us what to fix. It's free, and you can leave anytime.",
+    iosSub: "Through Apple's TestFlight app",
+    ios1: 'Tap the button below on your iPhone.',
+    ios2: 'Install TestFlight from the App Store if it asks.',
+    ios3: 'Tap Accept, then Install. Parlance appears on your home screen.',
+    iosBtn: 'Join on iPhone',
+    iosSoon: 'iPhone beta opening soon',
+    andSub: 'Through Google Play testing',
+    and1: 'Send us the Gmail address you use on Google Play.',
+    and2: 'We add you to the tester list, usually within a day.',
+    and3: 'Open the testing link, tap Accept invite, then install from Google Play.',
+    andBtn: 'Request Android access',
+    andOpen: "I'm already added: open Google Play",
+    mailSubject: 'Parlance Android beta',
+    mailBody: 'Please add me to the Parlance Android beta.\n\nMy Google Play Gmail address: ',
+    q1: 'What do testers do?',
+    a1: 'Use Parlance like you normally would. When something looks wrong, tell us. On iPhone you can take a screenshot inside TestFlight to send feedback straight to us.',
+    q2: 'Will my journal be safe?',
+    a2: 'Yes. Your entries stay on your phone, and beta updates install over the top without erasing them.',
+    q3: 'Does it cost anything?',
+    a3: 'No. Beta builds are free. Purchases inside TestFlight are test purchases and you are never charged.',
+    q4: 'Where do I send feedback?',
+    fbDiscord: 'Join our {discord} and post in #beta-testers, or email {email}.',
+    fbEmail: 'Email {email}.',
+    discord: 'Discord',
+    web: 'Use Parlance on the web',
+    privacy: 'Privacy Policy',
+  },
+  es: {
+    title: 'Únete a la beta de Parlance',
+    lede: 'Prueba las nuevas versiones de Parlance antes de que lleguen a la tienda y dinos qué arreglar. Es gratis y puedes salirte cuando quieras.',
+    iosSub: 'Con la app TestFlight de Apple',
+    ios1: 'Toca el botón de abajo desde tu iPhone.',
+    ios2: 'Instala TestFlight desde el App Store si te lo pide.',
+    ios3: 'Toca Aceptar y luego Instalar. Parlance aparecerá en tu pantalla de inicio.',
+    iosBtn: 'Unirme en iPhone',
+    iosSoon: 'La beta para iPhone abre pronto',
+    andSub: 'Con las pruebas de Google Play',
+    and1: 'Envíanos el Gmail que usas en Google Play.',
+    and2: 'Te agregamos a la lista de testers, normalmente en un día.',
+    and3: 'Abre el enlace de pruebas, toca Aceptar invitación e instala desde Google Play.',
+    andBtn: 'Pedir acceso en Android',
+    andOpen: 'Ya me agregaron: abrir Google Play',
+    mailSubject: 'Beta de Parlance para Android',
+    mailBody: 'Por favor agréguenme a la beta de Parlance para Android.\n\nMi Gmail de Google Play: ',
+    q1: '¿Qué hacen los testers?',
+    a1: 'Usa Parlance como siempre. Si algo se ve mal, avísanos. En iPhone puedes hacer una captura dentro de TestFlight para enviarnos comentarios directamente.',
+    q2: '¿Mi diario está seguro?',
+    a2: 'Sí. Tus entradas se quedan en tu teléfono y las actualizaciones beta se instalan encima sin borrarlas.',
+    q3: '¿Cuesta algo?',
+    a3: 'No. Las versiones beta son gratis. Las compras dentro de TestFlight son de prueba y nunca se cobran.',
+    q4: '¿Dónde envío comentarios?',
+    fbDiscord: 'Únete a nuestro {discord} y escribe en #beta-testers, o envía un correo a {email}.',
+    fbEmail: 'Envía un correo a {email}.',
+    discord: 'Discord',
+    web: 'Usar Parlance en la web',
+    privacy: 'Política de privacidad',
+  },
+  fr: {
+    title: 'Rejoignez la bêta de Parlance',
+    lede: "Essayez les nouvelles versions de Parlance avant leur sortie et dites-nous quoi corriger. C'est gratuit et vous pouvez arrêter à tout moment.",
+    iosSub: "Avec l'app TestFlight d'Apple",
+    ios1: 'Touchez le bouton ci-dessous depuis votre iPhone.',
+    ios2: "Installez TestFlight depuis l'App Store si on vous le demande.",
+    ios3: "Touchez Accepter, puis Installer. Parlance apparaît sur votre écran d'accueil.",
+    iosBtn: 'Rejoindre sur iPhone',
+    iosSoon: 'La bêta iPhone ouvre bientôt',
+    andSub: 'Avec les tests Google Play',
+    and1: "Envoyez-nous l'adresse Gmail que vous utilisez sur Google Play.",
+    and2: 'Nous vous ajoutons à la liste des testeurs, en général sous un jour.',
+    and3: "Ouvrez le lien de test, touchez Accepter l'invitation, puis installez depuis Google Play.",
+    andBtn: "Demander l'accès Android",
+    andOpen: 'Déjà ajouté : ouvrir Google Play',
+    mailSubject: 'Bêta Android de Parlance',
+    mailBody: "Merci de m'ajouter à la bêta Android de Parlance.\n\nMon adresse Gmail Google Play : ",
+    q1: 'Que font les testeurs ?',
+    a1: "Utilisez Parlance comme d'habitude. Si quelque chose ne va pas, dites-le-nous. Sur iPhone, une capture d'écran dans TestFlight nous envoie vos remarques directement.",
+    q2: 'Mon journal est-il en sécurité ?',
+    a2: "Oui. Vos entrées restent sur votre téléphone et les mises à jour bêta s'installent par-dessus sans les effacer.",
+    q3: 'Est-ce payant ?',
+    a3: 'Non. Les versions bêta sont gratuites. Les achats dans TestFlight sont des achats de test, jamais facturés.',
+    q4: 'Où envoyer mes remarques ?',
+    fbDiscord: 'Rejoignez notre {discord} et écrivez dans #beta-testers, ou envoyez un e-mail à {email}.',
+    fbEmail: 'Envoyez un e-mail à {email}.',
+    discord: 'Discord',
+    web: 'Utiliser Parlance sur le web',
+    privacy: 'Politique de confidentialité',
+  },
+};
+
+const esc = (s) => s.replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+
+function pickLang() {
+  const q = new URLSearchParams(location.search).get('lang');
+  if (q && T[q]) return q;
+  const saved = localStorage.getItem('parlance_beta_lang');
+  if (saved && T[saved]) return saved;
+  const nav = (navigator.language || 'en').slice(0, 2);
+  return T[nav] ? nav : 'en';
+}
+
+function apply(lang) {
+  const t = T[lang];
+  document.documentElement.lang = lang;
+  document.title = t.title;
+  document.querySelectorAll('[data-k]').forEach((el) => {
+    if (t[el.dataset.k]) el.textContent = t[el.dataset.k];
+  });
+
+  const iosBtn = document.getElementById('iosBtn');
+  if (LINKS.TESTFLIGHT_URL) {
+    iosBtn.href = LINKS.TESTFLIGHT_URL;
+    iosBtn.className = 'btn main';
+  } else {
+    iosBtn.removeAttribute('href');
+    iosBtn.className = 'btn off';
+    iosBtn.textContent = t.iosSoon;
+  }
+
+  document.getElementById('andRequest').href =
+    'mailto:' + LINKS.EMAIL + '?subject=' + encodeURIComponent(t.mailSubject) + '&body=' + encodeURIComponent(t.mailBody);
+  document.getElementById('andOpen').href = LINKS.PLAY_URL;
+
+  const email = '<a href="mailto:' + LINKS.EMAIL + '">' + LINKS.EMAIL + '</a>';
+  document.getElementById('feedbackLine').innerHTML = LINKS.DISCORD_URL
+    ? esc(t.fbDiscord).replace('{discord}', '<a href="' + esc(LINKS.DISCORD_URL) + '">' + esc(t.discord) + '</a>').replace('{email}', email)
+    : esc(t.fbEmail).replace('{email}', email);
+}
+
+const ua = navigator.userAgent;
+const isAndroid = /Android/i.test(ua);
+const isIOS = /iPhone|iPad|iPod/i.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+if (isAndroid) {
+  document.getElementById('androidCard').classList.add('primary');
+  document.querySelector('.cards').prepend(document.getElementById('androidCard'));
+} else {
+  document.getElementById('iosCard').classList.add('primary');
+}
+
+const sel = document.getElementById('langSelect');
+const lang = pickLang();
+sel.value = lang;
+apply(lang);
+sel.addEventListener('change', () => {
+  localStorage.setItem('parlance_beta_lang', sel.value);
+  apply(sel.value);
+});
+</script>
+</body>
+</html>
