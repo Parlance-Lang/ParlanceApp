@@ -95,12 +95,14 @@ def webhooks_from_env() -> dict[str, str]:
     return out
 
 
-def channel_messages(channel_id: str) -> list[dict]:
+def channel_messages(channel_id: str) -> list[dict] | None:
+    """None when the bot cannot read the channel."""
     seen: dict[str, dict] = {}
     pins = api("GET", f"/channels/{channel_id}/pins")
-    if isinstance(pins, list):
-        for m in pins:
-            seen[m["id"]] = m
+    if not isinstance(pins, list):
+        return None
+    for m in pins:
+        seen[m["id"]] = m
     before = None
     fetched = 0
     while fetched < HISTORY_CAP:
@@ -132,7 +134,8 @@ def main() -> int:
         print(f"Could not list channels: {channels}", file=sys.stderr)
         return 1
 
-    found = fixed = manual = 0
+    found = fixed = manual = scanned = checked = 0
+    unreadable: list[str] = []
     for ch in sorted(channels, key=lambda c: c.get("position", 0)):
         if ch.get("type") not in TEXT_TYPES:
             continue
@@ -150,8 +153,11 @@ def main() -> int:
                 print(f"{name} topic: outdated link")
 
         messages = channel_messages(ch["id"])
-        if not messages:
+        if messages is None:
+            unreadable.append(name)
             continue
+        scanned += 1
+        checked += len(messages)
         for m in messages:
             content, embeds = m.get("content") or "", m.get("embeds") or []
             if not (has_old(content) or embeds_have_old(embeds)):
@@ -185,6 +191,9 @@ def main() -> int:
             manual += not ok
             print(f"{where}: {'fixed' if ok else 'FAILED ' + str(r.get('message'))}")
 
+    print(f"\nScanned {scanned} channels, {checked} messages.")
+    if unreadable:
+        print(f"Could not read (bot lacks access): {', '.join(unreadable)}")
     mode = "fixed" if args.fix else "fixable"
     print(f"\nOutdated links found: {found}. {mode.capitalize()}: {fixed if args.fix else found - manual}. Manual: {manual}.")
     return 0
